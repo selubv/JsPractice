@@ -497,10 +497,10 @@
           - Valida que el título no rebase los 100 caracteres.
           - Valida que el director no rebase los 50 caracteres.
           - Valida que el año de estreno sea un número entero de 4 dígitos.
-                      - Valida que el país o paises sea introducidos en forma de arreglo.
-                      - Valida que los géneros sean introducidos en forma de arreglo.
-                      - Valida que los géneros introducidos esten dentro de los géneros aceptados*.
-                      - Crea un método estático que devuelva los géneros aceptados*.
+          - Valida que el país o paises sea introducidos en forma de arreglo.
+          - Valida que los géneros sean introducidos en forma de arreglo.
+          - Valida que los géneros introducidos esten dentro de los géneros aceptados*.
+          - Crea un método estático que devuelva los géneros aceptados*.
                       - Valida que la calificación sea un número entre 0 y 10 pudiendo ser decimal de una posición.
                       - Crea un método que devuelva toda la ficha técnica de la película.
                       - Apartir de un arreglo con la información de 3 películas genera 3 instancias de la clase de forma automatizada e imprime la ficha 
@@ -523,7 +523,20 @@
           this.validarTitulo(titulo);
           this.validarDirector(director);
           this.validarEstreno(estreno);
+          this.validarPais(pais);
+          this.validarGeneros(generos);
+          this.validarCalificacion(calificacion);
         }
+        static get listaGeneros(){
+          return ["Action", "Adult", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary" ,"Drama", 
+          "Family", "Fantasy", "Film Noir", "Game-Show", "History", "Horror", "Musical", "Music", "Mystery"," News", 
+          "Reality-TV", "Romance", "Sci-Fi", "Short", "Sport", "Talk-Show", "Thriller", "War", "Western"];
+        }
+
+        static generosAceptados(){
+          return console.info(`Los géneros aceptados son: ${Pelicula.listaGeneros.join(", ")}`);
+        }
+
         validarCadena(propiedad, valor){
           if(!valor) return console.log(`${propiedad} "${valor}" esta vacío`);
           if(typeof valor != "string") return console.error(`${propiedad} "${valor}" ingresado, No es una cadena de texto`);
@@ -540,6 +553,18 @@
         validarNumero(propiedad, valor){
           if(!valor) return console.log(`${propiedad} "${valor}" esta vacío`);
           if(typeof valor != "number") return console.error(`${propiedad} "${valor}" ingresado, No es una fecha`);
+
+          return true;
+        }
+
+        validarArreglo(propiedad,valor){
+          if(!valor) return console.warn(`${propiedad} "${valor}" esta vacío`);
+          if(!(valor instanceof array)) return console.error(`${propiedad} "${valor}" ingresado, no es un arreglo`);
+          if(valor.length === 0) return console.error(`${propiedad} "${valor}" no tiene datos`);
+
+          for (let cadena of valor) {
+            if(typeof cadena !== "string") return console.log(`El valor "${cadena}" ingresado, NO es una cadena de texto`);
+          }
 
           return true;
         }
@@ -566,14 +591,62 @@
             if(!(/^([0-9]){4}$/.test(estreno)))
               return console.error(`Fecha de Estreno ${estreno} no es válido, debe ser un número de 4 dígitos.`);
         }
+
+        validarPais(pais){
+          this.validarArreglo("País",pais);
+        }
+
+        validarGeneros(generos){
+          if(this.validarGeneros("Generos", generos)){
+            for (let genero of generos) {
+              //console.log(genero, Pelicula.listaGeneros.includes(genero));
+              if(!Pelicula.listaGeneros.includes(genero)){
+                console.error(`Género(s) incorrectos "${generos.join(", ")}"`);
+                Pelicula.generosAceptados();  
+              }
+            }
+          }
+        }
+
+        validarCalificacion(calificacion){
+          if(this.validarNumero("Calificación", calificacion))
+            return (calificacion < 0 || calificacion > 10)
+              ? console.error(`La calificación tiene que estar entre un rango de 0 a 10`)
+              : this.calificacion = calificacion.toFixed(1);
+            }
+
+        fichaTecnica(){
+          console.info(`Ficha Técnica:\nTítulo: "${this.titulo}"\nDirector: "${this.director}"\nAño:"${this.estreno}"\n
+          País:"${this.pais.join("-")}"\nGéneros: "${this.generos.join(", ")}\nCalificación: "${this.calificacion}"\n
+          IMDB id: "${this.id}"`);
+        }
       }
 
+      Pelicula.generosAceptados();
       const peli = new Pelicula({
         id: "tt1234567",
         titulo: "Título de la peli",
         director: "Director de la peli",
-        estreno: 1234
+        estreno: 1234,
+        pais: "Peru",
+        generos: "Comedy",
+        calificacio: 5.25
       });
+
+      peli.fichaTecnica();
+
+      const misPelis = [
+        { id: "tt0757758",
+          titulo: "Into The Wild",
+          director: "Sean penn",
+          estreno: 2007,
+          pais: ["USA"],
+          generos: ["Adventure", "Biography"],
+          calificacion: 8.1
+        }
+      ];
+
+      misPelis.forEach(el => new Pelicula(el).fichaTecnica());
   </script>
 </body>
 
