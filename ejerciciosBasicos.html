@@ -493,10 +493,10 @@
         La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de 
         estreno, país o países de origen, géneros y calificación en IMBD.
           - Todos los datos del objeto son obligatorios.
-                      - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 7 restantes números.
-                      - Valida que el título no rebase los 100 caracteres.
-                      - Valida que el director no rebase los 50 caracteres.
-                      - Valida que el año de estreno sea un número entero de 4 dígitos.
+          - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los 7 restantes números.
+          - Valida que el título no rebase los 100 caracteres.
+          - Valida que el director no rebase los 50 caracteres.
+          - Valida que el año de estreno sea un número entero de 4 dígitos.
                       - Valida que el país o paises sea introducidos en forma de arreglo.
                       - Valida que los géneros sean introducidos en forma de arreglo.
                       - Valida que los géneros introducidos esten dentro de los géneros aceptados*.
@@ -520,6 +520,9 @@
           this.calificacion = calificacion; 
         
           this.validarIMDB(id);
+          this.validarTitulo(titulo);
+          this.validarDirector(director);
+          this.validarEstreno(estreno);
         }
         validarCadena(propiedad, valor){
           if(!valor) return console.log(`${propiedad} "${valor}" esta vacío`);
@@ -527,16 +530,49 @@
           
           return true;
         }
+
+        validarLongitudCadena(propiedad, valor, longitud){
+          if(valor.length > longitud) return console.error(`${propiedad} "${valor}" excede el numero de caracteres permitidos`);
+        
+          return true;
+        }
+
+        validarNumero(propiedad, valor){
+          if(!valor) return console.log(`${propiedad} "${valor}" esta vacío`);
+          if(typeof valor != "number") return console.error(`${propiedad} "${valor}" ingresado, No es una fecha`);
+
+          return true;
+        }
+
         validarIMDB(id){
           if(this.validarCadena("IMDB id", id)){
             if(!(/^([a-z]){2}([0-9]){7}$/.test(id)))
               return console.error(`IMDB id "${id}" no es válido, debe tener 9 caracteres, los 2 primeros letras minúsculas, los 7 restantes números`);
           }
         }
+
+        validarTitulo(titulo){
+          if(this.validarCadena("Título", titulo))
+            this.validarLongitudCadena("Título", titulo, 100);
+        }
+
+        validarDirector(director){
+          if(this.validarCadena("Director", director))
+            this.validarLongitudCadena("Director", director, 50);
+        }
+
+        validarEstreno(estreno){
+          if(this.validarNumero("Fecha de Estreno", estreno))
+            if(!(/^([0-9]){4}$/.test(estreno)))
+              return console.error(`Fecha de Estreno ${estreno} no es válido, debe ser un número de 4 dígitos.`);
+        }
       }
 
       const peli = new Pelicula({
-        id: "tt1234567"
+        id: "tt1234567",
+        titulo: "Título de la peli",
+        director: "Director de la peli",
+        estreno: 1234
       });
   </script>
 </body>
