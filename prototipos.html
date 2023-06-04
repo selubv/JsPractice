@@ -9,7 +9,64 @@
 <body>
     <h1>Programación Orientada a Objetos</h1>
     <script>
+        /*Ejemplos de clases y herencias
+
+        1.En este ejemplo, tenemos una clase Animal que tiene un método eat(). Luego, tenemos una clase Dog que hereda de 
+        la clase Animal utilizando la palabra clave extends. La clase Dog tiene un método adicional bark(). Al crear una 
+        instancia de Dog, podemos acceder a los métodos tanto de la clase Animal como de la clase Dog. */
+
+        class Animal{
+            constructor(nombre){
+                this.nombre = nombre;
+            }
+
+            comer(){
+                console.log(`Soy un animal y como xd`);
+            }
+        }
+
+        class Dog extends Animal{
+            constructor(nombre, criar){
+                super(nombre);
+                this.criar = criar;
+            }
+
+            ladrar(){
+                console.log(`soy un perro y me crian`);
+            }
+        }
+        const miPerro = new Dog("papu", "Hola");
+
+        miPerro.comer();
+        miPerro.ladrar();
+
+        /*2. Definir en Javascript los siguientes objetos:
+            a. Animal. Tiene como atributos (propiedades) el nombre, la especie, el numero de patas y si tiene cola.
+                Definir los métodos setter y getter.
+            b. Vaca. Tiene todos los atributos de Animal y ademas otro atributo en el que se controle la leche que tiene.
+                Tiene, ademas de los setter y getter, un método ordeñar con un parámetro que corresponde al numero de 
+                litros.
+            c.Tigre. Tiene todos los atributos de Animal, ademas otro atributo en el que se contabiliza el numero de 
+                victimas cazadas. Tiene, ademas de los setter y getter, un método comerpersonas que tendra como parametro el 
+                numero de victimas.*/
         
+        class Animal{
+            constructor(nombre, especie, numPatas, cola){
+                this.nombre = nombre;
+                this.especie = especie;
+                this.numPatas = numPatas;
+                this.cola = cola;
+            }
+        }
+        class Vaca extends Animal{
+            constructor(nombre, especie, numPatas, cola, leche){
+                super(nombre, especie, numPatas, cola);
+                this.leche = leche;
+            }
+            ordeñar(){
+                
+            }
+        }
     </script>
 </body>
 </html>
