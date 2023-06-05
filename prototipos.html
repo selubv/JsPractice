@@ -47,8 +47,8 @@
                 Tiene, ademas de los setter y getter, un método ordeñar con un parámetro que corresponde al numero de 
                 litros.
             c.Tigre. Tiene todos los atributos de Animal, ademas otro atributo en el que se contabiliza el numero de 
-                victimas cazadas. Tiene, ademas de los setter y getter, un método comerpersonas que tendra como parametro el 
-                numero de victimas.*/
+                victimas cazadas. Tiene, ademas de los setter y getter, un método comerpersonas que tendra como parametro 
+                el numero de victimas.*/
         
         class Animal{
             constructor(nombre, especie, numPatas, cola){
@@ -57,16 +57,70 @@
                 this.numPatas = numPatas;
                 this.cola = cola;
             }
+            getNombre(){
+                return this.nombre;
+            }
+            setNombre(nombre){
+                return this.nombre = nombre;
+            }
+            getEspecie(){
+                return this.especie;
+            }
+            setEspecie(especie){
+                return this.especie = especie;
+            }
+            getNumPatas(){
+                return this.numPatas;
+            }
+            setNumPatas(numPatas){
+                return this.numPatas = numPatas;
+            }
+            getCola(){
+                return this.cola;
+            }
+            setCola(cola){
+                return this.cola = cola;
+            }
         }
         class Vaca extends Animal{
             constructor(nombre, especie, numPatas, cola, leche){
                 super(nombre, especie, numPatas, cola);
                 this.leche = leche;
             }
-            ordeñar(){
-                
+            getLeche(){
+                return this.leche;
+            }
+            setLeche(leche){
+                return this.leche = leche;
+            }
+            ordeñar(litros){
+                return this.leche = this.leche - litros;
+                console.log(`${this.nombre} ha sido ordeñada. Quedan ${leche} litros de leche`);
             }
         }
+        class Tigre extends Animal{
+            constructor(nombre, especie, numPatas, cola, victimasCazadas){
+                super(nombre, especie, numPatas, cola);
+                this.victimasCazadas = victimasCazadas;
+            }
+            getVictimasCazadas(){
+                return this.victimasCazadas;
+            }
+            setVictimasCazadas(victimasCazadas){
+                return this.victimasCazadas = victimasCazadas;
+            }
+            comerPersonas(numeroVictimas){
+                return this.victimasCazadas = this.victimasCazadas + numeroVictimas;
+                console.log(`${this.nombre} ha comido ${numeroVictimas} personas, Total de victimas: ${this.getVictimasCazadas}`);
+            }
+        }
+        // Ejemplo de uso
+        const perro = new Animal("Firulais", "Perro", 4, true);
+        console.log(perro.getNombre()); // Output: Firulais
+
+        const vaca = new Vaca("Margarita", "Vaca", 4, true, 10);
+        vaca.ordeñar(5); // Output: Margarita ha sido ordeñada. Quedan 5 lit
+
     </script>
 </body>
 </html>
