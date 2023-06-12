@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asincronia en JS</title>
+</head>
+<body>
+    <h1>Asincronia en JS</h1>
+    <script>
+        /*Callback para controlar la asincronia en tu proyecto (asincronia) -> espera un tiempo de ejecucion */
+        function cuadradoCalback(value, callback){
+            setTimeout(()=>{
+                callback(value, value*value);
+            },0 | Math.random()*1000);
+        }
+
+        cuadradoCalback(0, (value, result) => {
+            console.log("Inicia CallBack");
+            console.log(`CalBAck: ${value}: ${result}`);
+            cuadradoCalback(1, (value, result) => {
+                console.log(`CalBAck: ${value}: ${result}`);
+                cuadradoCalback(2, (value, result) => {
+                    console.log(`CalBAck: ${value}: ${result}`);
+                    cuadradoCalback(3, (value, result) => {
+                        console.log(`CalBAck: ${value}: ${result}`);
+                        console.log("Fin CallBack");
+                    });
+                });
+            });    
+        });
+
+        /*Promises es lo mismo que el callback pero mejor estructurado*/
+        function cuadradoCalback(value, callback){
+            setTimeout(()=>{
+                callback(value, value*value);
+            },0 | Math.random()*1000);
+        }
+    </script>
+</body>
+</html>
