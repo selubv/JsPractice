@@ -79,6 +79,42 @@
 
         //para borrar un set se utiliza el set.clear();
         set2.clear();
+
+        //Map se usa como un objeto primitivo
+
+        let mapa = new Map();
+        //Agregamos valores con el set
+        mapa.set("nombre","sergio");
+        mapa.set("apellido","Bonilla");
+        mapa.set("edad", 23);
+
+        console.log(mapa);
+        console.log(mapa.size); //longitud del objeto
+        console.log(mapa.has("correo")); //existe ese valor? false
+        console.log(mapa.has("nombre")); //existe ese valor? true
+        console.log(mapa.get("nombre")); //obtenemos el valor -> sergio
+        console.log(mapa.set("nombre", "sergio luis")); // Asignamos otro valor 
+        console.log(mapa.get("nombre")); // Obtenemos el nuevo valor -> sergio luis 
+
+        //para recorrer los objetos del mapa
+        for (let [key, value] of mapa) {
+            console.log(`Llave: ${key}, valor: ${value}`);
+        }
+
+        //Agregamos valores de golpe
+        let mapa2 = new Map([
+            ["nombre", "papucho"],
+            ["edad", "2 años"],
+            ["animal", "perro"],
+        ]);
+        console.log(mapa2); //imprimimos todos los valores
+
+        const llaveMapa2 = [...mapa2.keys()];
+        const valueMapa2 = [...mapa2.values()];
+        
+        console.log(llaveMapa2);    //Imprimimos solo las llaves en un array
+        console.log(valueMapa2);    //Imprimimos solo los valores en un array
+
     </script>
 </body>
 </html>
