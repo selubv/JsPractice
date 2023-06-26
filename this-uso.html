@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this en JavaScript</title>
+</head>
+<body>
+    <h1>this en JavaScript</h1>
+    <script>
+        this.lugar = "contexto Global"; //este this hace referencia a windows
+
+        function saludar(saludo, aQuien){
+            console.log(`${saludo} ${aQuien} desde : ${this.lugar}`);
+        }
+
+        saludar("Hola", "Papucho");
+
+        //creamos un contexto objeto sin hacer el uso de las llaves
+        const obj = {
+            lugar: "Contexto Objeto"
+        }
+
+        //La diferencia entre el call y el apply es los corchetes que se usan en apply al usar los atributos
+        saludar.call(obj, "Hola", "Sergio");    //hace llamado al obj con la palabra clave .call (contexto objeto)
+        saludar.call(null, "Hola", "Sergio");   //hace llamado al contexto global   
+        saludar.call(this, "Hola", "Sergio");   //hace llamado al contexto global
+        saludar.apply(obj, ["Adios", "Bonilla"]);   //hace llamado al obj con la palabra clave .apply (contexto objeto) ([])
+        saludar.apply(null, ["Adios", "Bonilla"]);  //hace llamado al contexto global
+        saludar.apply(this, ["Adios", "Bonilla"]);  //hace llamado al contexto global
+
+        // USO DE bind()
+        this.nombre = "Window";
+
+        const persona = {
+            nombre: "Sergio",
+            saludar: function(){
+                console.log(`Hola ${this.nombre}`)
+            }
+        }
+
+        persona.saludar();
+
+        const otraPersona = {
+            saludar: persona.saludar.bind(persona)  //bind sirve para enlazar el this con el objeto que desees
+        }
+
+        otraPersona.saludar();
+    </script>
+</body>
+</html>
