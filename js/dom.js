@@ -3,6 +3,22 @@ const habla = (texto) => {
     speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
 }
 habla(texto); */
+
+console.log("******Elementos del Documento");
+console.log(window.document);   //sirve para identificar el documento que quieres llamar
+console.log(document);  //sirve para identificar el documento de manera mas rapida
+console.log(document.head); //muestra lo que hay dentro del head
+console.log(document.body); //muestra lo que hay dentro del body
+console.log(document.documentElement);  //muestra una etiqueta en particular del HTML
+console.log(document.doctype); //muestra el tipo del documento
+console.log(document.charset);  //muestra el tipo del caracter del documento
+console.log(document.title); //muestra el titulo del documento HTML
+console.log(document.links); //muestra los links que se utilizan en el documento HTML
+console.log(document.images); //muestra los images que se utilizan en el documento HTML
+setTimeout(()=>{
+    console.log(document.getSelection().toString());    //muestra lo que marcamos en pantalla del buscador
+},3000);
+document.write("<h2>Hola, te escribo desde el DOM</h2>");
 /*
 //Selectores en JS
 console.log(document.getElementById("menu"));   //Se utiliza para seleccionar la id del html y es mas rapido que el query
@@ -50,6 +66,7 @@ console.log($linkDOM.dataset.description);
 */
 
 //Dom en el css
-const $linkDOM = document.querySelector(".link-dom");
+/*const $linkDOM = document.querySelector(".link-dom");
 console.log($linkDOM.style);
 console.log($linkDOM.getAttribute("style"));
+*/
