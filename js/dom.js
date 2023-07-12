@@ -3,7 +3,7 @@ const habla = (texto) => {
     speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
 }
 habla(texto); */
-
+/*
 console.log("******Elementos del Documento");
 console.log(window.document);   //sirve para identificar el documento que quieres llamar
 console.log(document);  //sirve para identificar el documento de manera mas rapida
@@ -19,6 +19,7 @@ setTimeout(()=>{
     console.log(document.getSelection().toString());    //muestra lo que marcamos en pantalla del buscador
 },3000);
 document.write("<h2>Hola, te escribo desde el DOM</h2>");
+*/
 /*
 //Selectores en JS
 console.log(document.getElementById("menu"));   //Se utiliza para seleccionar la id del html y es mas rapido que el query
