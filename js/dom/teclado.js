@@ -4,32 +4,34 @@ let x = 0,
 
 export function moveBall(e, ball, stage){
     const $ball = d.querySelector(ball), 
-        $stage = d.querySelector(stage);
-    
-    limitsBall = $ball.getBoundingClientRect();
-    limitsStage = $stage.getBoundingClientRect();
+        $stage = d.querySelector(stage),
+        limitsBall = $ball.getBoundingClientRect(),
+        limitsStage = $stage.getBoundingClientRect();
 
-    //const move = (direction) =>{}
+    //console.log(limitsBall, limitsStage);
     switch (e.keyCode) {
         case 37: //left mouse
-        //  move("left");
-        e.preventDefault();
-        if(limitsBall.left > limitsStage.left) x--;
+        if(limitsBall.left > limitsStage.left) {
+            e.preventDefault();
+            x--;}
         break;
         case 38: //up mouse
-        e.preventDefault();
-        if(limitsBall.up > limitsStage.up) y--;
-        //move("up");
+        if(limitsBall.top > limitsStage.top) {
+            e.preventDefault();
+            y--;
+        }    
         break;
         case 39: //right mouse
-        //move("right");
-        e.preventDefault();
-        if(limitsBall.right > limitsStage.right) x++;
+        if(limitsBall.right < limitsStage.right) {
+            e.preventDefault();
+            x++;
+        }
         break;
-        case 40: //down mouse   
-        //move("down");
-        e.preventDefault();
-        if(limitsBall.down > limitsStage.down) y++;
+        case 40: //down mouse 
+        if(limitsBall.bottom < limitsStage.bottom) {
+            e.preventDefault();
+            y++;
+        }
         break;
         default:
             break;
