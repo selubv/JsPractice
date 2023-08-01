@@ -5,7 +5,7 @@ export default function scrollTopButton(btn){
     const $scrollBtn = d.querySelector(btn);
 
     w.addEventListener('scroll', (e)=>{
-        let scrollTop = w.pageYOffset() || d.documentElement.scrollTop;
+        let scrollTop = d.documentElement.scrollTop;
         
         if(scrollTop > 700){
             $scrollBtn.classList.remove('hidden');
@@ -19,7 +19,7 @@ export default function scrollTopButton(btn){
             w.scrollTo({
                 behavior: "smooth",
                 top: 0,
-                left: 0
+                //left: 0
             });
         }
     });
