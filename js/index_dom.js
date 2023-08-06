@@ -6,6 +6,7 @@ import scrollTopButton from "./dom/boton_scroll.js";
 import darkTheme from "./dom/tema_oscuro.js";
 import responsiveMedia from "./dom/objeto_responsive.js";
 import responsiveTester from "./dom/prueba_responsive.js";
+import userDeviceInfo from "./dom/deteccion_dispositivos.js";
 
 const d = document;
 
@@ -28,6 +29,7 @@ d.addEventListener("DOMContentLoaded", (e) => {
         `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1583.7896333737663!2d-76.240300656423!3d-9.929803928451216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91a7c2e25c51eee9%3A0x791adbfd296fbb35!2sPlaza%20de%20Armas%20de%20Hu%C3%A1nuco!5e1!3m2!1ses!2spe!4v1690996423801!5m2!1ses!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
     );
     responsiveTester("responsive-tester");
+    userDeviceInfo("user-device");
 });
 
 d.addEventListener("keydown", (e)=>{
