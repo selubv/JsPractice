@@ -370,3 +370,8 @@ img {
         left: calc(4.25rem + 1vw);
     }
 }
+
+video {
+    width: 100%;
+    height: 100%;
+}
