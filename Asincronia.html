@@ -10,7 +10,7 @@
     <h1>Asincronia en JS</h1>
     <script>
         /*Callback para controlar la asincronia en tu proyecto (asincronia) -> espera un tiempo de ejecucion */
-        function cuadradoCalback(value, callback){
+        /*function cuadradoCalback(value, callback){
             setTimeout(()=>{
                 callback(value, value*value);
             },0 | Math.random()*1000);
@@ -30,7 +30,7 @@
                 });
             });    
         });
-
+*/
         /*Promises es lo mismo que el callback pero mejor estructurado*/
         function cuadradoPromise(value){
             if(typeof value !== "number"){
@@ -75,7 +75,7 @@
             .catch(err => console.error(err));
 
         //Async y await 
-        function cuadradoPromise(value){
+        /*function cuadradoPromise(value){
             if(typeof value !== "number"){
                 return Promise.reject(`Error, el valor "${value}" ingresado no es un número`)
             }
@@ -118,7 +118,7 @@
             }
             
             funcionAsyncronaDeclarada();
-        }
+        }*/
     </script>
 </body>
 </html>
